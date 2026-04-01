@@ -25,9 +25,7 @@ class RegisterPregnancyViewModel(application: Application) : AndroidViewModel(ap
         repository = PregnancyRepository(
             pregnancyDao = database.pregnancyDao(),
             ancVisitDao = database.ancVisitDao(),
-            reminderDao = database.reminderDao(),
-            userDao = database.userDao(),
-            riskFactors = database.riskFactorDao()
+            reminderDao = database.reminderDao()
         )
     }
     
@@ -43,13 +41,17 @@ class RegisterPregnancyViewModel(application: Application) : AndroidViewModel(ap
         viewModelScope.launch {
             try {
                 val pregnancyId = repository.registerPregnancy(
-                    patientName = patientName,
-                    patientId = patientId,
-                    lmpDate = lmpDate,
-                    phoneNumber = phoneNumber,
-                    address = address,
+                    womanName = patientName,
                     age = age,
-                    hemoglobin = hemoglobin
+                    mobileNumber = phoneNumber,
+                    address = address,
+                    village = "Unknown", // Default value - can be enhanced later
+                    district = "Unknown", // Default value - can be enhanced later
+                    state = "Unknown", // Default value - can be enhanced later
+                    lmp = lmpDate,
+                    edd = null, // Will be calculated from LMP
+                    registeredBy = "Provider", // Default value - can be enhanced with actual user
+                    hemoglobin = hemoglobin?.toFloat()
                 )
                 _registrationResult.value = Result.success(pregnancyId)
             } catch (e: Exception) {
