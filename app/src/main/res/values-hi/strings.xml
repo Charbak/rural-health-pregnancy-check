@@ -47,6 +47,8 @@
     <string name="error_required">यह फ़ील्ड आवश्यक है</string>
     <string name="pregnancy_registered_success">गर्भावस्था सफलतापूर्वक पंजीकृत! एएनसी जांच निर्धारित की गई हैं।</string>
     <string name="pregnancy_registered_error">गर्भावस्था पंजीकरण विफल। कृपया पुनः प्रयास करें।</string>
+    <string name="pincode">पिनकोड</string>
+    <string name="house_address">घर/गली का पता</string>
     
     <!-- ANC Visits -->
     <string name="anc_visits">एएनसी जांच</string>

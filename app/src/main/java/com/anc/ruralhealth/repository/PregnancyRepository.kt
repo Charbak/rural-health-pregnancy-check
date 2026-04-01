@@ -109,27 +109,28 @@ class PregnancyRepository(
             visits.add(visit)
         }
         
-        // Insert all visits
-        ancVisitDao.insertAll(visits)
+        // Insert all visits and get their IDs
+        val visitIds = ancVisitDao.insertAll(visits)
         
-        // Schedule reminders for each visit
-        scheduleReminders(pregnancyId, visits)
+        // Schedule reminders for each visit using the returned IDs
+        scheduleReminders(pregnancyId, visits, visitIds)
     }
     
     /**
      * Schedule reminders for ANC visits
      */
-    private suspend fun scheduleReminders(pregnancyId: Long, visits: List<ANCVisitEntity>) {
+    private suspend fun scheduleReminders(pregnancyId: Long, visits: List<ANCVisitEntity>, visitIds: List<Long>) {
         val reminders = mutableListOf<ReminderEntity>()
         var notificationId = 1000
         
-        for (visit in visits) {
+        for ((index, visit) in visits.withIndex()) {
+            val visitId = visitIds[index]
             val (reminder7Days, reminder2Days) = ANCScheduleCalculator.calculateReminderDates(visit.scheduledDate)
             
             // 7 days before reminder
             reminders.add(
                 ReminderEntity(
-                    visitId = visit.id,
+                    visitId = visitId,
                     pregnancyId = pregnancyId,
                     reminderType = "7_days_before",
                     scheduledTime = reminder7Days,
@@ -142,7 +143,7 @@ class PregnancyRepository(
             // 2 days before reminder
             reminders.add(
                 ReminderEntity(
-                    visitId = visit.id,
+                    visitId = visitId,
                     pregnancyId = pregnancyId,
                     reminderType = "2_days_before",
                     scheduledTime = reminder2Days,

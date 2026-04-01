@@ -34,27 +34,45 @@ class RegisterPregnancyViewModel(application: Application) : AndroidViewModel(ap
         patientId: String,
         lmpDate: Date,
         phoneNumber: String,
+        state: String,
+        district: String,
+        village: String,
+        pincode: String,
         address: String,
         age: Int,
         hemoglobin: Double?
     ) {
         viewModelScope.launch {
             try {
+                android.util.Log.d("RegisterPregnancy", "Starting registration for: $patientName")
+                android.util.Log.d("RegisterPregnancy", "Location: $village, $district, $state - $pincode")
+                android.util.Log.d("RegisterPregnancy", "LMP Date: $lmpDate")
+                android.util.Log.d("RegisterPregnancy", "Age: $age, Phone: $phoneNumber")
+                
+                // Combine full address
+                val fullAddress = "$address, $village, $district, $state - $pincode"
+                
                 val pregnancyId = repository.registerPregnancy(
                     womanName = patientName,
                     age = age,
                     mobileNumber = phoneNumber,
-                    address = address,
-                    village = "Unknown", // Default value - can be enhanced later
-                    district = "Unknown", // Default value - can be enhanced later
-                    state = "Unknown", // Default value - can be enhanced later
+                    address = fullAddress,
+                    village = village,
+                    district = district,
+                    state = state,
                     lmp = lmpDate,
                     edd = null, // Will be calculated from LMP
                     registeredBy = "Provider", // Default value - can be enhanced with actual user
                     hemoglobin = hemoglobin?.toFloat()
                 )
+                
+                android.util.Log.d("RegisterPregnancy", "Registration successful! ID: $pregnancyId")
                 _registrationResult.value = Result.success(pregnancyId)
             } catch (e: Exception) {
+                android.util.Log.e("RegisterPregnancy", "Registration failed", e)
+                android.util.Log.e("RegisterPregnancy", "Error message: ${e.message}")
+                android.util.Log.e("RegisterPregnancy", "Error cause: ${e.cause}")
+                e.printStackTrace()
                 _registrationResult.value = Result.failure(e)
             }
         }

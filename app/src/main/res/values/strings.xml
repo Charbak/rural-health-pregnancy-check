@@ -47,6 +47,8 @@
     <string name="error_required">This field is required</string>
     <string name="pregnancy_registered_success">Pregnancy registered successfully! ANC visits have been scheduled.</string>
     <string name="pregnancy_registered_error">Failed to register pregnancy. Please try again.</string>
+    <string name="pincode">Pincode</string>
+    <string name="house_address">House/Street Address</string>
     
     <!-- ANC Visits -->
     <string name="anc_visits">ANC Visits</string>
