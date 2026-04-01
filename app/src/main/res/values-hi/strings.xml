@@ -38,6 +38,15 @@
     <string name="height">ऊंचाई (सेमी)</string>
     <string name="weight">वजन (किलो)</string>
     <string name="hemoglobin">हीमोग्लोबिन (ग्राम/डीएल)</string>
+    <string name="patient_name">रोगी का नाम</string>
+    <string name="patient_id">रोगी आईडी</string>
+    <string name="lmp_date">अंतिम मासिक धर्म (एलएमपी) तिथि</string>
+    <string name="phone_number">फोन नंबर</string>
+    <string name="hemoglobin_optional">हीमोग्लोबिन (ग्राम/डीएल) - वैकल्पिक</string>
+    <string name="register">पंजीकरण करें</string>
+    <string name="error_required">यह फ़ील्ड आवश्यक है</string>
+    <string name="pregnancy_registered_success">गर्भावस्था सफलतापूर्वक पंजीकृत! एएनसी जांच निर्धारित की गई हैं।</string>
+    <string name="pregnancy_registered_error">गर्भावस्था पंजीकरण विफल। कृपया पुनः प्रयास करें।</string>
     
     <!-- ANC Visits -->
     <string name="anc_visits">एएनसी जांच</string>

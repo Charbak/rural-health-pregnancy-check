@@ -46,10 +46,10 @@ class HomeFragment : Fragment() {
         // Setup RecyclerView for upcoming visits
         binding.recyclerUpcomingVisits.layoutManager = LinearLayoutManager(context)
         
-        // Register pregnancy button - TODO: Add registration fragment to navigation graph
-        // binding.buttonRegisterPregnancy.setOnClickListener {
-        //     findNavController().navigate(R.id.action_home_to_register)
-        // }
+        // Register pregnancy button
+        binding.buttonRegisterPregnancy.setOnClickListener {
+            findNavController().navigate(R.id.navigation_register)
+        }
     }
     
     private fun observeData() {

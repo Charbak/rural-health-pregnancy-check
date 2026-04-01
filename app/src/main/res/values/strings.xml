@@ -38,6 +38,15 @@
     <string name="height">Height (cm)</string>
     <string name="weight">Weight (kg)</string>
     <string name="hemoglobin">Hemoglobin (g/dL)</string>
+    <string name="patient_name">Patient Name</string>
+    <string name="patient_id">Patient ID</string>
+    <string name="lmp_date">Last Menstrual Period (LMP) Date</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="hemoglobin_optional">Hemoglobin (g/dL) - Optional</string>
+    <string name="register">Register</string>
+    <string name="error_required">This field is required</string>
+    <string name="pregnancy_registered_success">Pregnancy registered successfully! ANC visits have been scheduled.</string>
+    <string name="pregnancy_registered_error">Failed to register pregnancy. Please try again.</string>
     
     <!-- ANC Visits -->
     <string name="anc_visits">ANC Visits</string>
