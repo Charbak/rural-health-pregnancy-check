@@ -53,4 +53,4 @@ data class ComplianceLogEntity(
     val createdAt: Date = Date()
 )
 
-// Made with Bob
+

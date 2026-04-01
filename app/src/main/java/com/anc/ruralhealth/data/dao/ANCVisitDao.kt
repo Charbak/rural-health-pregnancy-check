@@ -15,7 +15,7 @@ interface ANCVisitDao {
     suspend fun insert(visit: ANCVisitEntity): Long
     
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(visits: List<ANCVisitEntity>)
+    suspend fun insertAll(visits: List<ANCVisitEntity>): List<Long>
     
     @Update
     suspend fun update(visit: ANCVisitEntity)
@@ -62,5 +62,3 @@ interface ANCVisitDao {
     @Query("UPDATE anc_visits SET isSynced = 1, lastSyncDate = :syncDate WHERE id = :id")
     suspend fun markAsSynced(id: Long, syncDate: Date)
 }
-
-// Made with Bob

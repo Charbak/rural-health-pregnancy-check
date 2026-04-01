@@ -46,4 +46,4 @@ data class UserEntity(
     val updatedAt: Date = Date()
 )
 
-// Made with Bob
+

@@ -33,4 +33,4 @@ interface ComplianceLogDao {
     suspend fun markAlertSent(id: Long, sentTo: String, level: String)
 }
 
-// Made with Bob
+
