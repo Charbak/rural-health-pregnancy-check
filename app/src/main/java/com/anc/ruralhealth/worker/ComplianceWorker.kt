@@ -38,7 +38,11 @@ class ComplianceWorker(
                         complianceStatus = "defaulter",
                         missedVisitsCount = ancVisitDao.getMissedVisitCount(visit.pregnancyId, Date()),
                         alertSent = false,
+                        alertSentTo = null,
                         alertLevel = "provider",
+                        actionTaken = null,
+                        actionBy = null,
+                        actionDate = null,
                         notes = "Visit ${visit.visitType} was missed on ${visit.scheduledDate}"
                     )
                     
