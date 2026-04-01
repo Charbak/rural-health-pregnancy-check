@@ -73,7 +73,8 @@ class PregnancyRepository(
             bloodGroup = bloodGroup,
             height = height,
             weight = weight,
-            hemoglobin = hemoglobin
+            hemoglobin = hemoglobin,
+            riskFactors = null
         )
         
         // Insert pregnancy
