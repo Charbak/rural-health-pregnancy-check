@@ -9,79 +9,13 @@
         android:id="@+id/navigation_home"
         android:name="com.anc.ruralhealth.ui.home.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_home_to_pregnancy_details"
-            app:destination="@id/navigation_pregnancy_details" />
-        <action
-            android:id="@+id/action_home_to_register"
-            app:destination="@id/navigation_register_pregnancy" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_pregnancies"
-        android:name="com.anc.ruralhealth.ui.pregnancies.PregnanciesFragment"
-        android:label="@string/pregnancies"
-        tools:layout="@layout/fragment_pregnancies">
-        <action
-            android:id="@+id/action_pregnancies_to_details"
-            app:destination="@id/navigation_pregnancy_details" />
-        <action
-            android:id="@+id/action_pregnancies_to_register"
-            app:destination="@id/navigation_register_pregnancy" />
-    </fragment>
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.anc.ruralhealth.ui.dashboard.DashboardFragment"
         android:label="@string/dashboard"
         tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.anc.ruralhealth.ui.settings.SettingsFragment"
-        android:label="@string/settings"
-        tools:layout="@layout/fragment_settings" />
-
-    <fragment
-        android:id="@+id/navigation_register_pregnancy"
-        android:name="com.anc.ruralhealth.ui.register.RegisterPregnancyFragment"
-        android:label="@string/register_pregnancy"
-        tools:layout="@layout/fragment_register_pregnancy">
-        <action
-            android:id="@+id/action_register_to_home"
-            app:destination="@id/navigation_home"
-            app:popUpTo="@id/navigation_home"
-            app:popUpToInclusive="false" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_pregnancy_details"
-        android:name="com.anc.ruralhealth.ui.details.PregnancyDetailsFragment"
-        android:label="@string/visit_details"
-        tools:layout="@layout/fragment_pregnancy_details">
-        <argument
-            android:name="pregnancyId"
-            app:argType="long" />
-        <action
-            android:id="@+id/action_details_to_record_visit"
-            app:destination="@id/navigation_record_visit" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_record_visit"
-        android:name="com.anc.ruralhealth.ui.visit.RecordVisitFragment"
-        android:label="@string/mark_complete"
-        tools:layout="@layout/fragment_record_visit">
-        <argument
-            android:name="visitId"
-            app:argType="long" />
-        <action
-            android:id="@+id/action_record_to_details"
-            app:destination="@id/navigation_pregnancy_details"
-            app:popUpTo="@id/navigation_pregnancy_details"
-            app:popUpToInclusive="false" />
-    </fragment>
 
 </navigation>
 
