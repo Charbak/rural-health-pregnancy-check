@@ -31,7 +31,7 @@ class VisitAdapter : RecyclerView.Adapter<VisitAdapter.VisitViewHolder>() {
         val scheduledDate: TextView = itemView.findViewById(R.id.text_scheduled_date)
         val gestationalRange: TextView = itemView.findViewById(R.id.text_gestational_range)
         val status: TextView = itemView.findViewById(R.id.text_status)
-        val statusBadge: View = itemView.findViewById(R.id.text_status).parent as View
+        val statusBadge: View = status.parent as View
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VisitViewHolder {
@@ -67,20 +67,17 @@ class VisitAdapter : RecyclerView.Adapter<VisitAdapter.VisitViewHolder>() {
         val currentDate = Date()
         val (statusText, statusColor) = when {
             visit.isCompleted -> {
-                Triple("COMPLETED",
-                       ContextCompat.getColor(context, R.color.visit_completed),
-                       "✓ Completed")
+                Pair("✓ Completed",
+                     ContextCompat.getColor(context, R.color.visit_completed))
             }
             visit.scheduledDate.before(currentDate) -> {
-                Triple("MISSED",
-                       ContextCompat.getColor(context, R.color.visit_missed),
-                       "⚠ Missed")
+                Pair("⚠ Missed",
+                     ContextCompat.getColor(context, R.color.visit_missed))
             }
             else -> {
                 val daysUntil = ((visit.scheduledDate.time - currentDate.time) / (1000 * 60 * 60 * 24)).toInt()
-                Triple("UPCOMING",
-                       ContextCompat.getColor(context, R.color.visit_upcoming),
-                       "In $daysUntil days")
+                Pair("In $daysUntil days",
+                     ContextCompat.getColor(context, R.color.visit_upcoming))
             }
         }
 
