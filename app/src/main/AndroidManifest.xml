@@ -28,14 +28,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Splash Activity -->
-        <activity
-            android:name=".ui.SplashActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ANCRuralHealth.Splash"
-            android:screenOrientation="portrait">
-        </activity>
-
         <!-- Work Manager for reminders -->
         <provider
             android:name="androidx.startup.InitializationProvider"

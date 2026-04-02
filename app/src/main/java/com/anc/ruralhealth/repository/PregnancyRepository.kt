@@ -1,5 +1,6 @@
 package com.anc.ruralhealth.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.anc.ruralhealth.data.dao.PregnancyDao
 import com.anc.ruralhealth.data.dao.ANCVisitDao
@@ -8,7 +9,9 @@ import com.anc.ruralhealth.data.entity.PregnancyEntity
 import com.anc.ruralhealth.data.entity.ANCVisitEntity
 import com.anc.ruralhealth.data.entity.ReminderEntity
 import com.anc.ruralhealth.utils.ANCScheduleCalculator
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 /**
  * Repository for pregnancy-related operations
@@ -19,6 +22,12 @@ class PregnancyRepository(
     private val ancVisitDao: ANCVisitDao,
     private val reminderDao: ReminderDao
 ) {
+
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+
+    companion object {
+        private const val TAG = "ANC_PregnancyRepo"
+    }
     
     /**
      * Register a new pregnancy
@@ -120,13 +129,20 @@ class PregnancyRepository(
      * Schedule reminders for ANC visits
      */
     private suspend fun scheduleReminders(pregnancyId: Long, visits: List<ANCVisitEntity>, visitIds: List<Long>) {
+        Log.d(TAG, "Scheduling reminders for pregnancy ID: $pregnancyId")
+
         val reminders = mutableListOf<ReminderEntity>()
         var notificationId = 1000
-        
+
         for ((index, visit) in visits.withIndex()) {
             val visitId = visitIds[index]
             val (reminder7Days, reminder2Days) = ANCScheduleCalculator.calculateReminderDates(visit.scheduledDate)
-            
+
+            Log.d(TAG, "  ${visit.visitType} (Visit ID: $visitId)")
+            Log.d(TAG, "    Scheduled: ${dateFormat.format(visit.scheduledDate)}")
+            Log.d(TAG, "    7-day reminder: ${dateFormat.format(reminder7Days)}")
+            Log.d(TAG, "    2-day reminder: ${dateFormat.format(reminder2Days)}")
+
             // 7 days before reminder
             reminders.add(
                 ReminderEntity(
@@ -139,7 +155,7 @@ class PregnancyRepository(
                     notificationId = notificationId++
                 )
             )
-            
+
             // 2 days before reminder
             reminders.add(
                 ReminderEntity(
@@ -153,8 +169,9 @@ class PregnancyRepository(
                 )
             )
         }
-        
+
         reminderDao.insertAll(reminders)
+        Log.d(TAG, "Created ${reminders.size} reminders successfully")
     }
     
     /**
